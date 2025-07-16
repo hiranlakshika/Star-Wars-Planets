@@ -73,7 +73,7 @@ fun PlanetListScreen(
                     }
                 } else {
                     LazyColumn {
-                        items(state.planets) { planet ->
+                        items(state.planets, key = { it.name }) { planet ->
                             PlanetListItem(
                                 modifier = Modifier.fillMaxWidth(),
                                 name = planet.name,
