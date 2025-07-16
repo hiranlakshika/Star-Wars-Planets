@@ -35,6 +35,6 @@ fun PlanetListItem(
             Text(name, style = MaterialTheme.typography.titleMedium)
             Text(climate, style = MaterialTheme.typography.bodyMedium)
         }
-        NetworkImage(image)
+        NetworkImage(image, isCached = false)
     }
 }

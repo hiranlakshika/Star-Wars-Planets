@@ -23,10 +23,10 @@ private fun LoadingIndicator() {
 }
 
 @Composable
-fun NetworkImage(image: String) {
+fun NetworkImage(image: String, isCached: Boolean = true) {
     val context = LocalContext.current
     SubcomposeAsyncImage(
-        model = noCacheImageRequest(context, image),
+        model = if (isCached) image else noCacheImageRequest(context, image),
         contentDescription = null,
     ) {
         val state = painter.state
