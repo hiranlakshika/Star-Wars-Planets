@@ -1,6 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -36,6 +40,19 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+
+    // Kotlinx Serialization
+    implementation(libs.kotlinx.serialization.json)
+
+    // Retrofit
+    api(libs.retrofit)
+    api(libs.retrofit.converter.kotlinx)
+    api(libs.okhttp.logging.interceptor)
+
+    implementation(libs.bundles.hilt)
+    ksp(libs.androidx.hilt.compiler)
+    ksp(libs.hilt.android.compiler)
+
     implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

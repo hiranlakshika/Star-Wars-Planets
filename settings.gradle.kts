@@ -23,6 +23,5 @@ rootProject.name = "Star Wars Planets"
 include(":app")
 include(":core:common")
 include(":core:network")
-include(":feature")
 include(":feature:planets")
 include(":feature:planetdetails")

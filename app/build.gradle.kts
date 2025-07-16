@@ -43,6 +43,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":feature:planets"))
+    implementation(project(":feature:planetdetails"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -52,6 +54,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.compose)
 
     implementation(libs.kotlinx.serialization.json)
 
