@@ -10,6 +10,7 @@ import com.sysco.shared.core.domain.repository.PlanetsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import javax.inject.Singleton
@@ -24,15 +25,19 @@ object PlanetsModule {
 
     @Provides
     @Singleton
-    fun providePlanetsRepository(api: PlanetsApi): PlanetsRepository = PlanetsRepositoryImpl(api)
+    fun providePlanetsRepository(
+        api: PlanetsApi,
+        localPlanetDao: LocalPlanetDao
+    ): PlanetsRepository = PlanetsRepositoryImpl(api, localPlanetDao)
 
     @Provides
     @Singleton
-    fun providePlanetDatabase(context: Context): PlanetsDatabase = Room.databaseBuilder(
-        context,
-        PlanetsDatabase::class.java,
-        PlanetsDatabase.DATABASE_NAME
-    ).build()
+    fun providePlanetDatabase(@ApplicationContext context: Context): PlanetsDatabase =
+        Room.databaseBuilder(
+            context,
+            PlanetsDatabase::class.java,
+            PlanetsDatabase.DATABASE_NAME
+        ).build()
 
     @Provides
     @Singleton
