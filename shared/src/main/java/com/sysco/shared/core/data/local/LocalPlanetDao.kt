@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface LocalPlanetDao {
     @Upsert
-    suspend fun upsert(planet: PlanetEntity)
+    suspend fun upsertAll(planets: List<PlanetEntity>)
 
     @Query("SELECT * FROM PlanetEntity")
     fun getLocalPlanets(): Flow<List<PlanetEntity>>

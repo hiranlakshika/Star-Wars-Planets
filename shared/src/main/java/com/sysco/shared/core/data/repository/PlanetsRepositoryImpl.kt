@@ -28,7 +28,9 @@ class PlanetsRepositoryImpl @Inject constructor(
     override suspend fun getPlanets(): Result<List<Planet>, Error> {
         return safeCall {
             val result = planetsApi.getPlanets().map { it.toPlanet() }
-            result.forEach { localPlanetDao.upsert(it.toPlanetEntity()) }
+            localPlanetDao.upsertAll(result.map {
+                it.toPlanetEntity()
+            })
             result
         }
     }
