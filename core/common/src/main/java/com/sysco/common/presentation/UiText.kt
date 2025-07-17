@@ -1,4 +1,4 @@
-package com.sysco.common.ui
+package com.sysco.common.presentation
 
 import android.content.Context
 import androidx.annotation.StringRes

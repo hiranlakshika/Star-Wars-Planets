@@ -1,6 +1,6 @@
-package com.sysco.common.model
+package com.sysco.common.domain.model
 
-import com.sysco.common.model.error.Error
+import com.sysco.common.domain.model.error.Error
 
 typealias RootError = Error
 

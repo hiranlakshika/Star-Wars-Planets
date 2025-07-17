@@ -1,4 +1,4 @@
-package com.sysco.common.model.error
+package com.sysco.common.domain.model.error
 
 sealed interface DataError : Error {
     enum class LocalDataError : DataError {

@@ -35,10 +35,8 @@ fun NavigationRoot() {
                 })
             }
             composable<Route.PlanetDetails> { backStackEntry ->
-                val symbol = backStackEntry.toRoute<Route.PlanetDetails>().name
-                PlanetDetailsScreen {
-                    navController.popBackStack()
-                }
+                val planetName = backStackEntry.toRoute<Route.PlanetDetails>().name
+                PlanetDetailsScreen(onNavigateBack = { navController.popBackStack() })
             }
         }
     }

@@ -1,8 +1,8 @@
-package com.sysco.planets.di
+package com.sysco.common.di
 
-import com.sysco.planets.data.PlanetsRepositoryImpl
-import com.sysco.planets.data.remote.PlanetsApi
-import com.sysco.planets.domain.repository.PlanetsRepository
+import com.sysco.common.data.PlanetsRepositoryImpl
+import com.sysco.common.data.remote.PlanetsApi
+import com.sysco.common.domain.repository.PlanetsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

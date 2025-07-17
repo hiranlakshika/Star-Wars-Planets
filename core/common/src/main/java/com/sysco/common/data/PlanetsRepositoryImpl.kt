@@ -1,12 +1,12 @@
-package com.sysco.planets.data
+package com.sysco.common.data
 
-import com.sysco.common.model.Result
-import com.sysco.common.model.error.Error
+import com.sysco.common.data.remote.PlanetsApi
+import com.sysco.common.data.remote.mappers.toPlanet
+import com.sysco.common.domain.model.Planet
+import com.sysco.common.domain.model.Result
+import com.sysco.common.domain.model.error.Error
+import com.sysco.common.domain.repository.PlanetsRepository
 import com.sysco.network.util.safeCall
-import com.sysco.planets.data.remote.PlanetsApi
-import com.sysco.planets.data.remote.mappers.toPlanet
-import com.sysco.planets.domain.model.Planet
-import com.sysco.planets.domain.repository.PlanetsRepository
 import javax.inject.Inject
 
 class PlanetsRepositoryImpl @Inject constructor(private val planetsApi: PlanetsApi) :

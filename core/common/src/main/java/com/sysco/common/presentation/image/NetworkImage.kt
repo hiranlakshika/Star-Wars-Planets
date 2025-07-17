@@ -1,4 +1,4 @@
-package com.sysco.common.ui.image
+package com.sysco.common.presentation.image
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size

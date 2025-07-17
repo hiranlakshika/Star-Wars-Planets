@@ -1,4 +1,4 @@
-package com.sysco.common.ui.image
+package com.sysco.common.presentation.image
 
 import android.content.Context
 import coil.request.CachePolicy

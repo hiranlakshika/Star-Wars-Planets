@@ -1,10 +1,10 @@
-package com.sysco.planets.presentation
+package com.sysco.planetdetails.presentation
 
 import com.sysco.common.domain.model.Planet
 import com.sysco.common.presentation.UiText
 
-data class PlanetsState(
-    val planets: List<Planet> = emptyList(),
+data class PlanetDetailsState(
     val isLoading: Boolean = false,
     val error: UiText? = null,
+    val planet: Planet? = null
 )
