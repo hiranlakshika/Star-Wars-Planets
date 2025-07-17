@@ -1,7 +1,7 @@
 package com.sysco.planets.presentation
 
-import com.sysco.common.domain.model.Planet
-import com.sysco.common.presentation.UiText
+import com.sysco.shared.core.domain.model.Planet
+import com.sysco.shared.core.presentation.UiText
 
 data class PlanetsState(
     val planets: List<Planet> = emptyList(),

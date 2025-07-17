@@ -38,8 +38,7 @@ android {
 
 dependencies {
 
-    implementation(project(":core:network"))
-    implementation(project(":core:common"))
+    implementation(project(":shared"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

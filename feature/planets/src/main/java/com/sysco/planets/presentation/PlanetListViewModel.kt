@@ -2,10 +2,10 @@ package com.sysco.planets.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sysco.common.domain.model.Result
-import com.sysco.common.domain.repository.PlanetsRepository
-import com.sysco.common.presentation.UiText
 import com.sysco.planets.R
+import com.sysco.shared.core.domain.model.Result
+import com.sysco.shared.core.domain.repository.PlanetsRepository
+import com.sysco.shared.core.presentation.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

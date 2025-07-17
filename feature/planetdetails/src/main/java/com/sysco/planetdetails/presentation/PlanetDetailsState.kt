@@ -1,7 +1,8 @@
 package com.sysco.planetdetails.presentation
 
-import com.sysco.common.domain.model.Planet
-import com.sysco.common.presentation.UiText
+import com.sysco.shared.core.domain.model.Planet
+import com.sysco.shared.core.presentation.UiText
+
 
 data class PlanetDetailsState(
     val isLoading: Boolean = false,

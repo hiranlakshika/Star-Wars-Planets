@@ -21,8 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Star Wars Planets"
 include(":app")
-include(":core:common")
-include(":core:network")
 include(":feature:planets")
 include(":feature:planetdetails")
 include(":feature:main")
+include(":shared")
