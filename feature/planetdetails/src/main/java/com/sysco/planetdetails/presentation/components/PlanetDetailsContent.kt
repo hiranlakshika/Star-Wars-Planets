@@ -16,7 +16,6 @@ import com.sysco.shared.core.presentation.image.NetworkImage
 @Composable
 fun PlanetDetailsContent(
     modifier: Modifier = Modifier,
-    name: String,
     gravity: String,
     orbitalPeriod: String
 ) {
@@ -28,8 +27,7 @@ fun PlanetDetailsContent(
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(name, style = MaterialTheme.typography.titleLarge)
-        Text(gravity, style = MaterialTheme.typography.titleMedium)
+        Text(gravity, style = MaterialTheme.typography.titleLarge)
         Text(orbitalPeriod, style = MaterialTheme.typography.titleMedium)
         NetworkImage(
             isCached = false,

@@ -34,12 +34,14 @@ fun PlanetDetailsScreen(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
+    val notAvailableString = stringResource(id = R.string.planet_details_na)
+
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(
-                        text = stringResource(R.string.planet_details),
+                        text = state.planet?.name.orEmpty(),
                     )
                 },
                 navigationIcon = {
@@ -76,9 +78,14 @@ fun PlanetDetailsScreen(
                 } else {
                     PlanetDetailsContent(
                         modifier = Modifier.fillMaxSize(),
-                        name = state.planet?.name.orEmpty(),
-                        gravity = state.planet?.gravity.orEmpty(),
-                        orbitalPeriod = state.planet?.orbitalPeriod.orEmpty()
+                        gravity = stringResource(
+                            id = R.string.planet_details_gravity_label,
+                            state.planet?.gravity ?: notAvailableString
+                        ),
+                        orbitalPeriod = stringResource(
+                            id = R.string.planet_details_orbital_period_label,
+                            state.planet?.orbitalPeriod ?: notAvailableString
+                        )
                     )
                 }
             }

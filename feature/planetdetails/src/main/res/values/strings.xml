@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="planet_details">Planet details</string>
     <string name="back">Back</string>
+    <string name="no_data_found">No data found</string>
+    <string name="planet_details_gravity_label">Gravity: %1$s</string>
+    <string name="planet_details_orbital_period_label">Orbital Period: %1$s</string>
+    <string name="planet_details_na">N/A</string>
 </resources>
