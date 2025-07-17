@@ -1,6 +1,6 @@
-package com.sysco.shared.core.data.remote
+package com.sysco.planets.data.remote
 
-import com.sysco.shared.core.data.remote.dto.PlanetDto
+import com.sysco.planets.data.remote.dto.PlanetDto
 import retrofit2.http.GET
 
 interface PlanetsApi {

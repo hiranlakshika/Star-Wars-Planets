@@ -1,6 +1,6 @@
-package com.sysco.shared.core.data.remote.mappers
+package com.sysco.planets.data.remote.mappers
 
-import com.sysco.shared.core.data.remote.dto.PlanetDto
+import com.sysco.planets.data.remote.dto.PlanetDto
 import com.sysco.shared.core.domain.model.Planet
 
 internal fun PlanetDto.toPlanet() = Planet(

@@ -3,8 +3,8 @@ package com.sysco.planetdetails.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sysco.planetdetails.R
+import com.sysco.planetdetails.domain.repository.PlanetDetailsRepository
 import com.sysco.shared.core.domain.model.Result
-import com.sysco.shared.core.domain.repository.PlanetsRepository
 import com.sysco.shared.core.presentation.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PlanetDetailsViewModel @Inject constructor(
-    private val planetsRepository: PlanetsRepository
+    private val planetDetailsRepository: PlanetDetailsRepository
 ) :
     ViewModel() {
 
@@ -36,7 +36,7 @@ class PlanetDetailsViewModel @Inject constructor(
 
 
     private fun fetchPlanetDetails(planetName: String) = viewModelScope.launch(Dispatchers.IO) {
-        planetsRepository.getLocalPlanetByName(planetName).collectLatest { result ->
+        planetDetailsRepository.getLocalPlanetByName(planetName).collectLatest { result ->
             when (result) {
                 is Result.Error -> {
                     _state.update {

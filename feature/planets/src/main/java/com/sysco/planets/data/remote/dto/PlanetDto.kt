@@ -1,4 +1,4 @@
-package com.sysco.shared.core.data.remote.dto
+package com.sysco.planets.data.remote.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
