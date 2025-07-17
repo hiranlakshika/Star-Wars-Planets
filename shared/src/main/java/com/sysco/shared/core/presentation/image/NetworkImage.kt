@@ -10,20 +10,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
 
 @Composable
-private fun LoadingIndicator() {
-    Box(contentAlignment = Alignment.Center) {
+private fun LoadingIndicator(size: Dp = 48.dp) {
+    Box(contentAlignment = Alignment.Center, modifier = Modifier.size(size)) {
         CircularProgressIndicator(strokeWidth = 2.dp, modifier = Modifier.size(24.dp))
     }
 }
 
 @Composable
-fun NetworkImage(image: String, isCached: Boolean = true) {
+fun NetworkImage(image: String, isCached: Boolean = true, size: Dp = 48.dp) {
     val context = LocalContext.current
     SubcomposeAsyncImage(
         model = if (isCached) image else noCacheImageRequest(context, image),
@@ -32,11 +33,11 @@ fun NetworkImage(image: String, isCached: Boolean = true) {
         val state = painter.state
         when (state) {
             AsyncImagePainter.State.Empty -> {
-                LoadingIndicator()
+                LoadingIndicator(size)
             }
 
             is AsyncImagePainter.State.Error -> {
-                Box(contentAlignment = Alignment.Center) {
+                Box(contentAlignment = Alignment.Center, modifier = Modifier.size(size)) {
                     Icon(
                         imageVector = Icons.Default.Warning,
                         contentDescription = null,
@@ -46,11 +47,11 @@ fun NetworkImage(image: String, isCached: Boolean = true) {
             }
 
             is AsyncImagePainter.State.Loading -> {
-                LoadingIndicator()
+                LoadingIndicator(size)
             }
 
             is AsyncImagePainter.State.Success -> {
-                SubcomposeAsyncImageContent()
+                SubcomposeAsyncImageContent(modifier = Modifier.size(size))
             }
         }
     }
