@@ -1,7 +1,11 @@
 package com.sysco.shared.core.di
 
-import com.sysco.shared.core.data.PlanetsRepositoryImpl
+import android.content.Context
+import androidx.room.Room
+import com.sysco.shared.core.data.local.LocalPlanetDao
+import com.sysco.shared.core.data.local.PlanetsDatabase
 import com.sysco.shared.core.data.remote.PlanetsApi
+import com.sysco.shared.core.data.repository.PlanetsRepositoryImpl
 import com.sysco.shared.core.domain.repository.PlanetsRepository
 import dagger.Module
 import dagger.Provides
@@ -21,4 +25,17 @@ object PlanetsModule {
     @Provides
     @Singleton
     fun providePlanetsRepository(api: PlanetsApi): PlanetsRepository = PlanetsRepositoryImpl(api)
+
+    @Provides
+    @Singleton
+    fun providePlanetDatabase(context: Context): PlanetsDatabase = Room.databaseBuilder(
+        context,
+        PlanetsDatabase::class.java,
+        PlanetsDatabase.DATABASE_NAME
+    ).build()
+
+    @Provides
+    @Singleton
+    fun provideLocalPlanetDao(planetsDatabase: PlanetsDatabase): LocalPlanetDao =
+        planetsDatabase.dao()
 }

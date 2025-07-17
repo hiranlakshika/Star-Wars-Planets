@@ -53,6 +53,11 @@ dependencies {
     api(libs.retrofit.converter.kotlinx)
     api(libs.okhttp.logging.interceptor)
 
+    // Room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+
     implementation(libs.bundles.hilt)
     ksp(libs.androidx.hilt.compiler)
     ksp(libs.hilt.android.compiler)

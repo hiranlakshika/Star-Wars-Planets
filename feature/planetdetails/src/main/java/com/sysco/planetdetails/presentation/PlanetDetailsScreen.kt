@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sysco.planetdetails.R
+import com.sysco.planetdetails.presentation.components.PlanetDetailsContent
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -73,12 +74,12 @@ fun PlanetDetailsScreen(
                         )
                     }
                 } else {
-//                    PlanetDetailsContent(
-//                        modifier = Modifier.fillMaxSize(),
-//                        name = TODO(),
-//                        gravity = TODO(),
-//                        orbitalPeriod = TODO()
-//                    )
+                    PlanetDetailsContent(
+                        modifier = Modifier.fillMaxSize(),
+                        name = state.planet?.name.orEmpty(),
+                        gravity = state.planet?.gravity.orEmpty(),
+                        orbitalPeriod = state.planet?.orbitalPeriod.orEmpty()
+                    )
                 }
             }
         }

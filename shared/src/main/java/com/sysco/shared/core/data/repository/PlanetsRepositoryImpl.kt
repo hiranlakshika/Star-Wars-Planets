@@ -1,4 +1,4 @@
-package com.sysco.shared.core.data
+package com.sysco.shared.core.data.repository
 
 import com.sysco.shared.core.data.remote.PlanetsApi
 import com.sysco.shared.core.data.remote.mappers.toPlanet

@@ -61,6 +61,10 @@ dependencies {
     ksp(libs.androidx.hilt.compiler)
     ksp(libs.hilt.android.compiler)
 
+    // Paging
+    implementation(libs.androidx.paging.runtime.ktx)
+    implementation(libs.androidx.paging.compose)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
