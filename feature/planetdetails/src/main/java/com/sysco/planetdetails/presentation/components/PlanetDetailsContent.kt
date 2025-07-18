@@ -12,7 +12,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.sysco.planetdetails.R
@@ -27,7 +26,6 @@ fun PlanetDetailsContent(
     orbitalPeriod: String
 ) {
     val scrollState = rememberScrollState()
-    val containerSize = LocalWindowInfo.current.containerSize
 
     Column(
         modifier = modifier
@@ -36,22 +34,21 @@ fun PlanetDetailsContent(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(name, style = MaterialTheme.typography.titleLarge)
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(16.dp))
         NetworkImage(
-            image = image,
-            size = (containerSize.height * 0.15f).dp,
+            image = image
         )
         Spacer(modifier = Modifier.height(16.dp))
-        PlanetDetailInfoItem(
-            label = stringResource(R.string.gravity),
-            value = gravity,
-            modifier = Modifier.fillMaxWidth()
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        PlanetDetailInfoItem(
-            label = stringResource(R.string.orbital_period),
-            value = orbitalPeriod,
-            modifier = Modifier.fillMaxWidth()
-        )
+        Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start) {
+            PlanetDetailInfoItem(
+                label = stringResource(R.string.gravity),
+                value = gravity
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            PlanetDetailInfoItem(
+                label = stringResource(R.string.orbital_period),
+                value = orbitalPeriod
+            )
+        }
     }
 }

@@ -16,14 +16,14 @@ class PlanetDetailsRepositoryImpl @Inject constructor(private val localPlanetDao
     PlanetDetailsRepository {
     override suspend fun getLocalPlanetByName(name: String): Flow<Result<Planet, Error>> {
         return try {
-            val result = localPlanetDao.getPlanetByName(name)?.toPlanet()
-            if (result != null) {
-                flowOf(Result.Success(result))
-            } else {
-                flowOf(Result.Error(DataError.LocalDataError.NOT_FOUND))
-            }
+            localPlanetDao.getPlanetByName(name)?.toPlanet()?.let {
+                flowOf(Result.Success(it))
+            } ?: flowOf(Result.Error(DataError.LocalDataError.NOT_FOUND))
         } catch (e: Exception) {
-            Log.e("PlanetDetailsRepositoryImpl", "getLocalPlanetByName: ${e.message}")
+            Log.e(
+                "PlanetDetailsRepositoryImpl",
+                "Error fetching planet by name '$name': ${e.message}"
+            )
             flowOf(Result.Error(DataError.LocalDataError.NOT_FOUND))
         }
     }

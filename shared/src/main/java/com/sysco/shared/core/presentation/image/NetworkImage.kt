@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -29,7 +30,6 @@ private fun LoadingIndicator(size: Dp = 48.dp) {
 fun NetworkImage(
     image: String,
     isCached: Boolean = true,
-    size: Dp = 130.dp,
     conerRadius: Dp = 12.dp
 ) {
     val context = LocalContext.current
@@ -39,12 +39,12 @@ fun NetworkImage(
     ) {
         val state = painter.state
         when (state) {
-            AsyncImagePainter.State.Empty -> {
-                LoadingIndicator(size)
+            is AsyncImagePainter.State.Empty, is AsyncImagePainter.State.Loading -> {
+                LoadingIndicator()
             }
 
             is AsyncImagePainter.State.Error -> {
-                Box(contentAlignment = Alignment.Center, modifier = Modifier.size(size)) {
+                Box(contentAlignment = Alignment.Center) {
                     Icon(
                         imageVector = Icons.Default.Warning,
                         contentDescription = null,
@@ -53,15 +53,12 @@ fun NetworkImage(
                 }
             }
 
-            is AsyncImagePainter.State.Loading -> {
-                LoadingIndicator(size)
-            }
-
             is AsyncImagePainter.State.Success -> {
                 SubcomposeAsyncImageContent(
                     modifier = Modifier
-                        .size(size)
-                        .clip(RoundedCornerShape(conerRadius))
+                        .clip(RoundedCornerShape(conerRadius)),
+                    alignment = Alignment.TopStart,
+                    contentScale = ContentScale.FillHeight
                 )
             }
         }
