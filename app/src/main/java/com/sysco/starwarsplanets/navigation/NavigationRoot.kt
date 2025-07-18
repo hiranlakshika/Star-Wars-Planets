@@ -12,7 +12,6 @@ import com.sysco.planetdetails.presentation.PlanetDetailsEvent
 import com.sysco.planetdetails.presentation.PlanetDetailsScreen
 import com.sysco.planetdetails.presentation.PlanetDetailsViewModel
 import com.sysco.planets.presentation.PlanetListScreen
-import com.sysco.planets.presentation.PlanetListViewModel
 import com.sysco.planets.presentation.PlanetsEvent
 
 @Composable
@@ -26,14 +25,11 @@ fun NavigationRoot() {
             startDestination = Route.PlanetsList,
         ) {
             composable<Route.PlanetsList> {
-                val viewModel = hiltViewModel<PlanetListViewModel>()
                 PlanetListScreen(onEvent = { event ->
                     when (event) {
                         is PlanetsEvent.OnSelectPlanet -> {
                             navController.navigate(Route.PlanetDetails(event.planet, event.imageId))
                         }
-
-                        else -> viewModel.onEvent(event)
                     }
                 })
             }

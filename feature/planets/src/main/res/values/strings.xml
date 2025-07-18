@@ -2,4 +2,5 @@
 <resources>
     <string name="failed_to_load_data">Failed to load data</string>
     <string name="planets">Planets</string>
+    <string name="climate">Climate: %1$s</string>
 </resources>

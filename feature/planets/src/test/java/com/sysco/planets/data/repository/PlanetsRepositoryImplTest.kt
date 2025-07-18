@@ -39,18 +39,8 @@ class PlanetsRepositoryImplTest {
         val planetDto = PlanetDto(
             "arid",
             "2014-12-09T13:50:49.641000Z",
-            "10465",
-            "2014-12-20T20:58:18.411000Z",
-            emptyList(),
-            "1 standard",
             "Tatooine",
-            "304",
-            "200000",
-            emptyList(),
-            "23",
-            "1",
-            "desert",
-            "https://swapi.dev/api/planets/1/"
+            "2014-12-20T20:58:18.411000Z",
         )
         val responseDto = listOf(planetDto)
         whenever(planetsApi.getPlanets()).thenReturn(responseDto)

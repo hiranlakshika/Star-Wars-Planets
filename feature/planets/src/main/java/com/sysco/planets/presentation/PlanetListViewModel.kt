@@ -24,15 +24,8 @@ class PlanetListViewModel @Inject constructor(private val planetsRepository: Pla
 
     val state: StateFlow<PlanetsState> get() = _state
 
-
-    fun onEvent(event: PlanetsEvent) {
-        when (event) {
-            PlanetsEvent.OnLoad -> {
-                fetchPlanets()
-            }
-
-            else -> Unit
-        }
+    init {
+        fetchPlanets()
     }
 
     private fun fetchPlanets() = viewModelScope.launch(Dispatchers.IO) {
