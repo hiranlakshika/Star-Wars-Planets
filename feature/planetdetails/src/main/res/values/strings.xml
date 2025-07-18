@@ -5,4 +5,7 @@
     <string name="planet_details_gravity_label">Gravity: %1$s</string>
     <string name="planet_details_orbital_period_label">Orbital Period: %1$s</string>
     <string name="planet_details_na">N/A</string>
+    <string name="planet_details">Planet Details</string>
+    <string name="gravity">Gravity</string>
+    <string name="orbital_period">Orbital Period</string>
 </resources>

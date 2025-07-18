@@ -2,6 +2,7 @@ package com.sysco.shared.core.presentation.image
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.CircularProgressIndicator
@@ -9,6 +10,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -24,7 +26,12 @@ private fun LoadingIndicator(size: Dp = 48.dp) {
 }
 
 @Composable
-fun NetworkImage(image: String, isCached: Boolean = true, size: Dp = 48.dp) {
+fun NetworkImage(
+    image: String,
+    isCached: Boolean = true,
+    size: Dp = 130.dp,
+    conerRadius: Dp = 12.dp
+) {
     val context = LocalContext.current
     SubcomposeAsyncImage(
         model = if (isCached) image else noCacheImageRequest(context, image),
@@ -51,7 +58,11 @@ fun NetworkImage(image: String, isCached: Boolean = true, size: Dp = 48.dp) {
             }
 
             is AsyncImagePainter.State.Success -> {
-                SubcomposeAsyncImageContent(modifier = Modifier.size(size))
+                SubcomposeAsyncImageContent(
+                    modifier = Modifier
+                        .size(size)
+                        .clip(RoundedCornerShape(conerRadius))
+                )
             }
         }
     }

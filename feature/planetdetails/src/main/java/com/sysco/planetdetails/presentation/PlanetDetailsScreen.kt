@@ -41,7 +41,7 @@ fun PlanetDetailsScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = state.planet?.name.orEmpty(),
+                        text = stringResource(id = R.string.planet_details),
                     )
                 },
                 navigationIcon = {
@@ -78,14 +78,9 @@ fun PlanetDetailsScreen(
                 } else {
                     PlanetDetailsContent(
                         modifier = Modifier.fillMaxSize(),
-                        gravity = stringResource(
-                            id = R.string.planet_details_gravity_label,
-                            state.planet?.gravity ?: notAvailableString
-                        ),
-                        orbitalPeriod = stringResource(
-                            id = R.string.planet_details_orbital_period_label,
-                            state.planet?.orbitalPeriod ?: notAvailableString
-                        )
+                        name = state.planet?.name ?: notAvailableString,
+                        gravity = state.planet?.gravity ?: notAvailableString,
+                        orbitalPeriod = state.planet?.orbitalPeriod ?: notAvailableString
                     )
                 }
             }
