@@ -25,6 +25,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sysco.planetdetails.R
 import com.sysco.planetdetails.presentation.components.PlanetDetailsContent
+import com.sysco.shared.core.domain.ImageUrls
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -80,7 +81,8 @@ fun PlanetDetailsScreen(
                         modifier = Modifier.fillMaxSize(),
                         name = state.planet?.name ?: notAvailableString,
                         gravity = state.planet?.gravity ?: notAvailableString,
-                        orbitalPeriod = state.planet?.orbitalPeriod ?: notAvailableString
+                        orbitalPeriod = state.planet?.orbitalPeriod ?: notAvailableString,
+                        image = ImageUrls.getDynamicLargeImageUrl(state.imageId ?: 0)
                     )
                 }
             }

@@ -29,6 +29,11 @@ class PlanetDetailsViewModel @Inject constructor(
     fun onEvent(event: PlanetDetailsEvent) {
         when (event) {
             is PlanetDetailsEvent.OnInit -> {
+                _state.update {
+                    it.copy(
+                        imageId = event.imageId
+                    )
+                }
                 fetchPlanetDetails(event.planetName)
             }
         }

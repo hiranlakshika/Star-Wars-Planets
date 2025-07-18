@@ -10,5 +10,5 @@ sealed interface Route {
     data object PlanetsList : Route
 
     @Serializable
-    data class PlanetDetails(val name: String) : Route
+    data class PlanetDetails(val name: String, val imageId: Int) : Route
 }

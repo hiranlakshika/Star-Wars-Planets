@@ -16,7 +16,6 @@ import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.sysco.planetdetails.R
-import com.sysco.shared.core.domain.Constants
 import com.sysco.shared.core.presentation.image.NetworkImage
 
 @Composable
@@ -24,6 +23,7 @@ fun PlanetDetailsContent(
     modifier: Modifier = Modifier,
     name: String,
     gravity: String,
+    image: String,
     orbitalPeriod: String
 ) {
     val scrollState = rememberScrollState()
@@ -38,8 +38,7 @@ fun PlanetDetailsContent(
         Text(name, style = MaterialTheme.typography.titleLarge)
         Spacer(modifier = Modifier.height(8.dp))
         NetworkImage(
-            isCached = false,
-            image = Constants.DYNAMIC_LARGE_IMAGE_URL,
+            image = image,
             size = (containerSize.height * 0.15f).dp,
         )
         Spacer(modifier = Modifier.height(16.dp))

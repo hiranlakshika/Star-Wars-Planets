@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -25,6 +25,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sysco.planets.R
 import com.sysco.planets.presentation.components.PlanetListItem
+import com.sysco.shared.core.domain.ImageUrls
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -73,14 +74,21 @@ fun PlanetListScreen(
                     }
                 } else {
                     LazyColumn {
-                        items(state.planets, key = { it.name }) { planet ->
+                        itemsIndexed(
+                            items = state.planets,
+                            key = { _, item -> item.name }) { index, planet ->
                             PlanetListItem(
                                 modifier = Modifier.fillMaxWidth(),
                                 name = planet.name,
                                 climate = planet.climate,
-                                image = planet.image,
+                                image = ImageUrls.getDynamicSmallImageUrl(index),
                                 onClick = {
-                                    onEvent(PlanetsEvent.OnSelectPlanet(planet.name))
+                                    onEvent(
+                                        PlanetsEvent.OnSelectPlanet(
+                                            planet.name,
+                                            index
+                                        )
+                                    )
                                 })
                         }
                     }

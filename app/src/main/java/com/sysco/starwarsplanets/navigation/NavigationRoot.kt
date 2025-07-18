@@ -30,7 +30,7 @@ fun NavigationRoot() {
                 PlanetListScreen(onEvent = { event ->
                     when (event) {
                         is PlanetsEvent.OnSelectPlanet -> {
-                            navController.navigate(Route.PlanetDetails(event.planet))
+                            navController.navigate(Route.PlanetDetails(event.planet, event.imageId))
                         }
 
                         else -> viewModel.onEvent(event)
@@ -39,9 +39,10 @@ fun NavigationRoot() {
             }
             composable<Route.PlanetDetails> { backStackEntry ->
                 val planetName = backStackEntry.toRoute<Route.PlanetDetails>().name
+                val imageId = backStackEntry.toRoute<Route.PlanetDetails>().imageId
                 val viewModel = hiltViewModel<PlanetDetailsViewModel>()
                 LaunchedEffect(planetName) {
-                    viewModel.onEvent(PlanetDetailsEvent.OnInit(planetName))
+                    viewModel.onEvent(PlanetDetailsEvent.OnInit(planetName, imageId))
                 }
                 PlanetDetailsScreen(onNavigateBack = { navController.popBackStack() })
             }
