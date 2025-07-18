@@ -12,6 +12,25 @@ The project is structured into several modules:
 - `:feature:planetdetails`: Contains features related to displaying the details of a single planet.
 - `:shared`: Contains shared code, such as data models, utility functions, and common UI components.
 
+## Architecture
+
+This project follows a **Clean Architecture** approach, emphasizing separation of concerns and
+testability. Key principles include:
+
+- **Domain Layer**: Contains business logic and entities, independent of any framework.
+- **Data Layer**: Implements repositories defined in the domain layer, handling data sources (
+  network, local database).
+- **Presentation Layer**: Manages UI logic and state, interacting with the domain layer.
+
+Additionally, the project utilizes the **Model-View-Intent (MVI)** architectural pattern within the
+presentation layer. MVI promotes a unidirectional data flow, making state management predictable and
+debugging easier:
+
+- **Model (State)**: Represents the current state of the UI.
+- **View**: Observes the state and renders the UI, sending user intents to the ViewModel.
+- **Intent**: User actions or events that trigger state changes.
+- **ViewModel**: Processes intents, interacts with the domain layer, and updates the state.
+
 ## Technologies Used
 
 - **Kotlin**: The primary programming language.
