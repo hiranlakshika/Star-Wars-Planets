@@ -45,7 +45,6 @@ android {
 dependencies {
     implementation(project(":feature:planets"))
     implementation(project(":feature:planetdetails"))
-    implementation(project(":feature:main"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

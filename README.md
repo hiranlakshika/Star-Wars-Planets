@@ -10,7 +10,6 @@ The project is structured into several modules:
 - `:app`: The main application module.
 - `:feature:planets`: Contains features related to displaying the list of planets.
 - `:feature:planetdetails`: Contains features related to displaying the details of a single planet.
-- `:feature:main`: Likely contains the main entry point or navigation for the application.
 - `:shared`: Contains shared code, such as data models, utility functions, and common UI components.
 
 ## Technologies Used
