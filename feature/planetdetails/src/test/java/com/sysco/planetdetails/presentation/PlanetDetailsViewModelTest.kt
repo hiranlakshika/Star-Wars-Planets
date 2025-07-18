@@ -1,6 +1,7 @@
 package com.sysco.planetdetails.presentation
 
 import app.cash.turbine.test
+import com.google.common.truth.Truth.assertThat
 import com.sysco.planetdetails.domain.repository.PlanetDetailsRepository
 import com.sysco.shared.core.domain.model.Planet
 import com.sysco.shared.core.domain.model.Result
@@ -13,8 +14,6 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.mockito.kotlin.mock
@@ -60,13 +59,13 @@ class PlanetDetailsViewModelTest {
         // Then
         viewModel.state.test {
             val initialState = awaitItem()
-            assertEquals(imageId, initialState.imageId)
+            assertThat(initialState.imageId).isEqualTo(imageId)
             // Assert that planet is null in the initial state
-            assertEquals(null, initialState.planet)
+            assertThat(initialState.planet).isNull()
 
             val updatedState = awaitItem()
-            assertEquals(imageId, updatedState.imageId)
-            assertEquals(planet, updatedState.planet)
+            assertThat(updatedState.imageId).isEqualTo(imageId)
+            assertThat(updatedState.planet).isEqualTo(planet)
             cancelAndIgnoreRemainingEvents()
         }
         verify(planetDetailsRepository).getLocalPlanetByName(planetName)
@@ -93,7 +92,7 @@ class PlanetDetailsViewModelTest {
         viewModel.state.test {
             skipItems(1) // Skip initial state
             val state = awaitItem()
-            assertEquals(planet, state.planet)
+            assertThat(state.planet).isEqualTo(planet)
             cancelAndIgnoreRemainingEvents()
         }
     }
@@ -117,7 +116,7 @@ class PlanetDetailsViewModelTest {
         viewModel.state.test {
             skipItems(1) // Skip initial state
             val state = awaitItem()
-            assertNotNull(state.error)
+            assertThat(state.error).isNotNull()
             cancelAndIgnoreRemainingEvents()
         }
     }

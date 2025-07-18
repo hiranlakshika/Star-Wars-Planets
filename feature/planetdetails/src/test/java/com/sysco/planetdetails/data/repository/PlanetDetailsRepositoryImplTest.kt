@@ -2,13 +2,12 @@ package com.sysco.planetdetails.data.repository
 
 import android.util.Log
 import app.cash.turbine.test
+import com.google.common.truth.Truth.assertThat
 import com.sysco.shared.core.data.local.LocalPlanetDao
 import com.sysco.shared.core.data.local.PlanetEntity
 import com.sysco.shared.core.domain.model.Result
 import com.sysco.shared.core.domain.model.error.DataError
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.mockStatic
@@ -29,7 +28,7 @@ class PlanetDetailsRepositoryImplTest {
 
     @Test
     fun `getLocalPlanetByName returns success when planet found`() = runTest {
-        // Given
+
         val planetName = "Tatooine"
         val planetEntity = PlanetEntity(
             "Tatooine",
@@ -40,12 +39,11 @@ class PlanetDetailsRepositoryImplTest {
         )
         whenever(localPlanetDao.getPlanetByName(planetName)).thenReturn(planetEntity)
 
-        // When
         planetDetailsRepository.getLocalPlanetByName(planetName).test {
             // Then
             val result = awaitItem()
-            assertTrue(result is Result.Success)
-            assertEquals(planetName, (result as Result.Success).data.name)
+            assertThat(result).isInstanceOf(Result.Success::class.java)
+            assertThat((result as Result.Success).data.name).isEqualTo(planetName)
             awaitComplete()
         }
     }
@@ -60,12 +58,10 @@ class PlanetDetailsRepositoryImplTest {
             val planetName = "Tatooine"
             whenever(localPlanetDao.getPlanetByName(planetName)).thenThrow(RuntimeException("DB error"))
 
-            // When
             planetDetailsRepository.getLocalPlanetByName(planetName).test {
-                // Then
                 val result = awaitItem()
-                assertTrue(result is Result.Error)
-                assertEquals(DataError.LocalDataError.NOT_FOUND, (result as Result.Error).error)
+                assertThat(result).isInstanceOf(Result.Error::class.java)
+                assertThat((result as Result.Error).error).isEqualTo(DataError.LocalDataError.NOT_FOUND)
                 awaitComplete()
             }
 
